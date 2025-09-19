@@ -36,7 +36,7 @@ import mlflow
 import mlflow.sklearn
 
 import dagshub
-dagshub.init(repo_owner='rdgzmanuel', repo_name='mlops-practica-icai', mlflow=True)
+dagshub.init(repo_owner='rdgzmanuel', repo_name='our-model-mlops', mlflow=True)
 
 # Cargar el conjunto de datos Iris
 iris = datasets.load_iris()
@@ -51,7 +51,7 @@ with mlflow.start_run():
     )
 
     # Inicializar y entrenar el modelo (Logistic Regression)
-    model = LogisticRegression(max_iter=200, random_state=42)
+    model = LogisticRegression(max_iter=100, random_state=42)
     model.fit(X_train, y_train)
 
     # Predicciones y precisión
@@ -63,7 +63,7 @@ with mlflow.start_run():
 
     # Registrar en MLflow
     mlflow.sklearn.log_model(model, "logistic-regression-model")
-    mlflow.log_param("max_iter", 200)
+    mlflow.log_param("max_iter", 100)
     mlflow.log_metric("accuracy", accuracy)
 
     print(f"Modelo entrenado y precisión: {accuracy:.4f}")
